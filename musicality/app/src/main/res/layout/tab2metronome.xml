@@ -1,0 +1,42 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="@dimen/activity_vertical_margin"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/activity_vertical_margin"
+                android:orientation="vertical"
+                tools:context="com.darkes.musicality.MainActivity" >
+
+
+    <TextView
+        android:id="@+id/metronome"
+        android:text="000"
+        android:textSize="100sp"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/colorAccentLight"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.5"/>
+
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        app:srcCompat="@color/colorAccent"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floatingActionButtonPlay"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:clickable="true"
+        app:fabSize="mini"
+        android:layout_weight="1"
+        android:layout_gravity="center_horizontal" />
+
+
+</LinearLayout>
