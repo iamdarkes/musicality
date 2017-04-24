@@ -12,22 +12,22 @@
 
 
     <TextView
-        android:id="@+id/metronome"
+        android:id="@+id/tempoTextView"
         android:text="000"
         android:textSize="100sp"
         android:layout_marginTop="30dp"
-        android:textColor="@color/colorAccentLight"
+        android:textColor="@color/white"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_gravity="center_horizontal"
         android:layout_weight="0.5"/>
 
     <SeekBar
-        android:id="@+id/seekBar"
+        android:id="@+id/seekBarTempo"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        app:srcCompat="@color/colorAccent"/>
+        app:srcCompat="@color/colorAccentLight"/>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/floatingActionButtonPlay"

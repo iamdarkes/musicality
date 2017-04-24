@@ -11,11 +11,11 @@
                 tools:context="com.darkes.musicality.MainActivity" >
 
     <TextView
-        android:id="@+id/bpm"
-        android:text="000"
+        android:id="@+id/BPMTextView"
+        android:text="@string/zeroes"
         android:textSize="100sp"
         android:layout_marginTop="30dp"
-        android:textColor="@color/colorAccentLight"
+        android:textColor="@color/white"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_gravity="center_horizontal"
@@ -24,15 +24,17 @@
 
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/floatingActionButton"
+        android:id="@+id/floatingActionButtonBPM"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:clickable="true"
         app:fabSize="normal"
         android:src="@drawable/ic_touch_app_white_24dp"
-        app:rippleColor="@color/colorAccentLight"
+
         android:layout_gravity="center_horizontal"
-        app:srcCompat="@color/colorAccent"/>
+        app:srcCompat="@color/colorAccentLight"
+        />
+    <!--app:rippleColor="@color/colorAccentLight"-->
 
 </LinearLayout>
