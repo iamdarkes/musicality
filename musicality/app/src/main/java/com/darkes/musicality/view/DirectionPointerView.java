@@ -14,12 +14,6 @@ import com.darkes.musicality.R;
 import com.darkes.musicality.TunerUpdate;
 import com.darkes.musicality.tarsos.PitchDetectionResult;
 
-//import com.chrynan.guitartuner.Note;
-//import com.chrynan.guitartuner.R;
-//import com.chrynan.guitartuner.TunerUpdate;
-//import com.chrynan.guitartuner.tarsos.PitchDetectionResult;
-
-
 /*
  * Copyright 2016 chRyNaN
  *
@@ -37,7 +31,7 @@ import com.darkes.musicality.tarsos.PitchDetectionResult;
  */
 
 /**
- * Created by chRyNaN on 1/24/2016. This class is a CircleImageView that displays up, down, or check drawables
+ * This class is a CircleImageView that displays up, down, or check drawables
  * depending on the current state of the current Note object. For instance, if the actualFrequency property
  * of the Note object is less than the frequency property of that same Note object then this View will display
  * the up drawable.

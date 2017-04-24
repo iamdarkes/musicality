@@ -6,17 +6,13 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.GestureDetectorCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v4.view.GestureDetectorCompat;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-/**
- * Created by darkes on 4/20/17.
- */
 
-public class MainActivity2 extends AppCompatActivity{
+public class MetronomeActivity extends AppCompatActivity{
 
     private SeekBar seekBarTempo;
     private TextView seekBarTextView;
@@ -28,7 +24,7 @@ public class MainActivity2 extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        setContentView(R.layout.tab2metronome);
+        setContentView(R.layout.activity_metronome);
 
         gestureObject = new GestureDetectorCompat(this, new LearnGesture());
 
@@ -70,13 +66,13 @@ public class MainActivity2 extends AppCompatActivity{
 
             if(e2.getX() > e1.getX()) {
 
-                Intent intent = new Intent(MainActivity2.this, Main3Activity.class);
+                Intent intent = new Intent(MetronomeActivity.this, BPMActivity.class);
                 finish();
                 startActivity(intent);
 
             } else
                 if(e2.getX() < e1.getX()) {
-                    Intent intent = new Intent(MainActivity2.this, TunerActivity.class);
+                    Intent intent = new Intent(MetronomeActivity.this, TunerActivity.class);
                     finish();
                     startActivity(intent);
                 }

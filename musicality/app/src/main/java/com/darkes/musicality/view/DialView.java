@@ -20,9 +20,6 @@ import com.darkes.musicality.R;
 import java.util.ArrayList;
 import java.util.List;
 
-//import com.chrynan.guitartuner.Note;
-//import com.chrynan.guitartuner.R;
-
 /*
  * Copyright 2016 chRyNaN
  *
@@ -39,9 +36,7 @@ import java.util.List;
  * limitations under the License.
  */
 
-/**
- * Created by chRyNaN on 1/17/2016.
- */
+
 public class DialView extends View {
     private static final String TAG = DialView.class.getSimpleName();
     private Paint paint;

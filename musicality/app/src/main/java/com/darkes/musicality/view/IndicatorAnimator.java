@@ -22,7 +22,7 @@ import com.darkes.musicality.Note;
  */
 
 /**
- * Created by chRyNaN on 1/21/2016. This class encapsulates an ObjectAnimator which will be used to animate
+ * This class encapsulates an ObjectAnimator which will be used to animate
  * the IndicatorView within a CircleTunerView. The ObjectAnimator updates the IndicatorView's angle value which
  * changes its position. There's a lot of computations occurring on the UI thread which may be problematic. Consider
  * handling that logic on a different thread and posting to the UI thread with a Handler when needed.

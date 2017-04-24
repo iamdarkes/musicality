@@ -25,9 +25,6 @@ import com.darkes.musicality.util.PermissionUtils;
  * limitations under the License.
  */
 
-/**
- * Created by chRyNaN on 5/6/2016.
- */
 public class PermissionDialog extends DialogFragment {
     public static final String TAG = PermissionDialog.class.getSimpleName();
 

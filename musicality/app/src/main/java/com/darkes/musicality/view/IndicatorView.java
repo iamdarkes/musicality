@@ -32,9 +32,6 @@ import com.darkes.musicality.R;
  * limitations under the License.
  */
 
-/**
- * Created by chRyNaN on 1/18/2016.
- */
 public class IndicatorView extends View {
     private static final String TAG = IndicatorView.class.getSimpleName();
     private Paint paint;

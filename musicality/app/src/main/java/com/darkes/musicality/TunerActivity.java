@@ -1,9 +1,6 @@
 package com.darkes.musicality;
 
 import android.animation.Animator;
-import android.app.AlarmManager;
-import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -17,13 +14,8 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.widget.Toast;
 
-import java.util.Calendar;
-
-//import com.google.android.gms.ads.AdRequest;
-//import com.google.android.gms.ads.AdView;
 
 /*
- * Copyright 2016 chRyNaN
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -39,30 +31,24 @@ import java.util.Calendar;
  */
 
 /**
- * Created by chRyNaN on 1/18/2016.
  * Circular Reveal Animation Transition help from here: https://gist.github.com/ferdy182/d9b3525aa65b5b4c468a
  */
 public class TunerActivity extends AppCompatActivity {
-    private static final String TAG = TunerActivity.class.getSimpleName();
     private Toolbar toolbar;
     private TunerFragment tunerFragment;
     private PitchFragment pitchFragment;
     private boolean showCancel;
-    //private AdView mAdView;
     private GestureDetectorCompat gestureObject;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         showCancel = false;
-        setContentView(R.layout.tuner_activity);
+        setContentView(R.layout.activity_tuner);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         tunerFragment = new TunerFragment();
         getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, tunerFragment, TunerFragment.TAG).commit();
-        setTimedNotification();
-
-        //mAdView = (AdView) findViewById(R.id.adView);
 
         gestureObject = new GestureDetectorCompat(this, new LearnGesture());
     }
@@ -76,8 +62,6 @@ public class TunerActivity extends AppCompatActivity {
     @Override
     public void onResume(){
         super.onResume();
-        //AdRequest adRequest = new AdRequest.Builder().build();
-        //mAdView.loadAd(adRequest);
     }
 
     @Override
@@ -174,24 +158,6 @@ public class TunerActivity extends AppCompatActivity {
         }
     }
 
-
-
-
-    private void setTimedNotification(){
-        //Send a notification to the user reminding them to tune their guitar if they haven't opened the app in awhile
-        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        Intent intent = new Intent(this, NotificationPublishReceiver.class);
-        PendingIntent alarmIntent = PendingIntent.getBroadcast(this, NotificationPublishReceiver.REQUEST_CODE, intent, 0);
-        //Cancel any previously set alarms
-        alarmManager.cancel(alarmIntent);
-        //One week - 7 days, 24 hours, 60 minutes, 60 seconds, 1000 milliseconds
-        long time = Calendar.getInstance().getTimeInMillis() + (7 * 24 * 60 * 60 * 1000);
-        alarmManager.set(AlarmManager.RTC, time, alarmIntent);
-    }
-
-
-
-
     class LearnGesture extends GestureDetector.SimpleOnGestureListener {
 
 
@@ -200,13 +166,13 @@ public class TunerActivity extends AppCompatActivity {
 
             if(e2.getX() > e1.getX()) {
 
-                Intent intent = new Intent(TunerActivity.this, MainActivity2.class);
+                Intent intent = new Intent(TunerActivity.this, MetronomeActivity.class);
                 finish();
                 startActivity(intent);
 
             } else
             if(e2.getX() < e1.getX()) {
-                Intent intent = new Intent(TunerActivity.this, Main3Activity.class);
+                Intent intent = new Intent(TunerActivity.this, BPMActivity.class);
                 finish();
                 startActivity(intent);
             }

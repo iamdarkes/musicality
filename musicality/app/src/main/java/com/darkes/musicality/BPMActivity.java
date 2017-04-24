@@ -10,7 +10,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
-public class Main3Activity extends AppCompatActivity {
+public class BPMActivity extends AppCompatActivity {
 
     private GestureDetectorCompat gestureObject;
     private FloatingActionButton mFloatingActionButtonBPM;
@@ -21,7 +21,7 @@ public class Main3Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.tab1bpm);
+        setContentView(R.layout.activity_bpm);
 
         //mTextViewBPM = (TextView) findViewById(R.id.BPMTextView);
         mFloatingActionButtonBPM = (FloatingActionButton) findViewById(R.id.floatingActionButtonBPM);
@@ -71,13 +71,13 @@ public class Main3Activity extends AppCompatActivity {
 
             if(e2.getX() > e1.getX()) {
 
-                Intent intent = new Intent(Main3Activity.this, TunerActivity.class);
+                Intent intent = new Intent(BPMActivity.this, TunerActivity.class);
                 finish();
                 startActivity(intent);
 
             } else
             if(e2.getX() < e1.getX()) {
-                Intent intent = new Intent(Main3Activity.this, MainActivity2.class);
+                Intent intent = new Intent(BPMActivity.this, MetronomeActivity.class);
                 finish();
                 startActivity(intent);
             }

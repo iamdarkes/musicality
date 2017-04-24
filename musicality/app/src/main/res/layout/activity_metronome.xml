@@ -8,33 +8,35 @@
                 android:paddingRight="@dimen/activity_horizontal_margin"
                 android:paddingTop="@dimen/activity_vertical_margin"
                 android:orientation="vertical"
-                tools:context="com.darkes.musicality.MainActivity" >
+                tools:context="com.darkes.musicality.MetronomeActivity" >
+
 
     <TextView
-        android:id="@+id/BPMTextView"
-        android:text="@string/zeroes"
+        android:id="@+id/tempoTextView"
+        android:text="000"
         android:textSize="100sp"
         android:layout_marginTop="30dp"
         android:textColor="@color/white"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_gravity="center_horizontal"
-        android:layout_weight="2"/>
+        android:layout_weight="0.5"/>
 
-
+    <SeekBar
+        android:id="@+id/seekBarTempo"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        app:srcCompat="@color/colorAccentLight"/>
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/floatingActionButtonBPM"
+        android:id="@+id/floatingActionButtonPlay"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_height="0dp"
         android:clickable="true"
-        app:fabSize="normal"
-        android:src="@drawable/ic_touch_app_white_24dp"
+        app:fabSize="mini"
+        android:layout_weight="1"
+        android:layout_gravity="center_horizontal" />
 
-        android:layout_gravity="center_horizontal"
-        app:srcCompat="@color/colorAccentLight"
-        />
-    <!--app:rippleColor="@color/colorAccentLight"-->
 
 </LinearLayout>

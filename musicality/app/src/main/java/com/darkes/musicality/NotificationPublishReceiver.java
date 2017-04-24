@@ -24,7 +24,7 @@ import android.support.v4.app.NotificationCompat;
  */
 
 /**
- * Created by chRyNaN on 1/27/2016. This class is a BroadcastReceiver that is triggered from an AlarmManager after a certain amount
+ * This class is a BroadcastReceiver that is triggered from an AlarmManager after a certain amount
  * of time if the user has not opened this app. It alerts the user to tune their guitar. This is useful to keep users engaged in
  * the application.
  */

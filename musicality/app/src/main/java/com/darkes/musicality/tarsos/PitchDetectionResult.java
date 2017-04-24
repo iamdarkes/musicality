@@ -1,13 +1,7 @@
 package com.darkes.musicality.tarsos;
 
 /*
-*      _______                       _____   _____ _____
-*     |__   __|                     |  __ \ / ____|  __ \
-*        | | __ _ _ __ ___  ___  ___| |  | | (___ | |__) |
-*        | |/ _` | '__/ __|/ _ \/ __| |  | |\___ \|  ___/
-*        | | (_| | |  \__ \ (_) \__ \ |__| |____) | |
-*        |_|\__,_|_|  |___/\___/|___/_____/|_____/|_|
-*
+
 * -------------------------------------------------------------
 *
 * TarsosDSP is developed by Joren Six at IPEM, University Ghent
@@ -50,6 +44,7 @@ package com.darkes.musicality.tarsos;
  *
  *
  * @author Joren Six
+ *
  */
 public class PitchDetectionResult {
     /**

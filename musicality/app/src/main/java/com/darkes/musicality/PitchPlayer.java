@@ -25,9 +25,7 @@ import java.util.List;
  * limitations under the License.
  */
 
-/**
- * Created by chRyNaN on 1/24/2016.
- */
+
 public class PitchPlayer implements PitchControl {
     private static final String TAG = PitchPlayer.class.getSimpleName();
     private static final double DECAY_FACTOR = 0.5;

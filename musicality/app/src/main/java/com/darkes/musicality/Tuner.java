@@ -10,29 +10,8 @@ import com.darkes.musicality.tarsos.PitchDetectionResult;
 import com.darkes.musicality.tarsos.Yin;
 import com.darkes.musicality.util.AudioUtils;
 
-/*
- * Copyright 2016 chRyNaN
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *  http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 
-/**
- * Created by chRyNaN on 1/14/2016. This class binds the logic between the view and the pitch detection process.
- * This way a custom tuner view can be created and as long as it implements the TunerUpdate interface it can be
- * used instead of the default view.
- */
 public class Tuner {
-    private static final String TAG = Tuner.class.getSimpleName();
     private TunerUpdate view;
     private int sampleRate;
     private int bufferSize;

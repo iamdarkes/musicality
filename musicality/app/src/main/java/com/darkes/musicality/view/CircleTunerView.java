@@ -13,9 +13,6 @@ import com.darkes.musicality.Note;
 import com.darkes.musicality.TunerUpdate;
 import com.darkes.musicality.tarsos.PitchDetectionResult;
 
-//import com.chrynan.guitartuner.Note;
-//import com.chrynan.guitartuner.TunerUpdate;
-//import com.chrynan.guitartuner.tarsos.PitchDetectionResult;
 
 /*
  * Copyright 2016 chRyNaN
@@ -31,10 +28,8 @@ import com.darkes.musicality.tarsos.PitchDetectionResult;
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
 
-/**
- * Created by chRyNaN on 1/14/2016. This View is focused on drawing to the screen three things:
+ * This View is focused on drawing to the screen three things:
  * the outer donut with text, the inner circle with text, and the indicator. When the View is
  * updated (updateNote is called), the inner circle text will change to the appropriate note and
  * the indicator will animate to the appropriate position.

@@ -15,9 +15,8 @@ package com.darkes.musicality;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/**
- * Created by chRyNaN on 1/24/2016.
- */
+
+
 public interface PitchControl {
 
     void play(double frequency);

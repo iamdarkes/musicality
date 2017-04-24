@@ -21,10 +21,6 @@ import com.darkes.musicality.tarsos.PitchDetectionResult;
 
 import java.text.DecimalFormat;
 
-//import com.chrynan.guitartuner.Note;
-//import com.chrynan.guitartuner.TunerUpdate;
-//import com.chrynan.guitartuner.tarsos.PitchDetectionResult;
-
 /*
  * Copyright 2016 chRyNaN
  *
@@ -42,7 +38,7 @@ import java.text.DecimalFormat;
  */
 
 /**
- * Created by chRyNaN on 1/23/2016. A custom ViewGroup which contains a CircleTunerView as a child view
+ * A custom ViewGroup which contains a CircleTunerView as a child view
  * along with other useful views.
  */
 public class TunerView extends LinearLayout implements TunerUpdate{
