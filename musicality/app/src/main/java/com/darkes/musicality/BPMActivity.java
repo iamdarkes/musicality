@@ -10,6 +10,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
+import com.darkes.musicality.metronome.MetronomeA;
+
 public class BPMActivity extends AppCompatActivity {
 
     private GestureDetectorCompat gestureObject;
@@ -77,7 +79,7 @@ public class BPMActivity extends AppCompatActivity {
 
             } else
             if(e2.getX() < e1.getX()) {
-                Intent intent = new Intent(BPMActivity.this, MetronomeActivity.class);
+                Intent intent = new Intent(BPMActivity.this, MetronomeA.class);
                 finish();
                 startActivity(intent);
             }

@@ -14,6 +14,8 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.widget.Toast;
 
+import com.darkes.musicality.metronome.MetronomeA;
+
 
 /*
  *
@@ -166,7 +168,7 @@ public class TunerActivity extends AppCompatActivity {
 
             if(e2.getX() > e1.getX()) {
 
-                Intent intent = new Intent(TunerActivity.this, MetronomeActivity.class);
+                Intent intent = new Intent(TunerActivity.this, MetronomeA.class);
                 finish();
                 startActivity(intent);
 

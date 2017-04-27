@@ -11,22 +11,107 @@
                 tools:context="com.darkes.musicality.MetronomeActivity" >
 
 
-    <TextView
-        android:id="@+id/tempoTextView"
-        android:text="000"
-        android:textSize="100sp"
-        android:layout_marginTop="30dp"
-        android:textColor="@color/white"
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_weight="1"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_weight="0.5"/>
+        android:layout_height="0dp">
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+
+        <LinearLayout
+            android:layout_gravity="center_vertical"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+
+            <Button
+                android:text="-1"
+
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"/>
+
+            <Button
+                android:text="-5"
+
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"/>
+        </LinearLayout>
+
+
+
+        <TextView
+            android:gravity="center_vertical|center_horizontal"
+            android:id="@+id/tempoTextView"
+            android:text="000"
+            android:textSize="90sp"
+            android:textColor="@color/white"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="4"/>
+
+        <LinearLayout
+            android:layout_gravity="center_vertical"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+
+            <Button
+                android:text="+1"
+
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"/>
+
+            <Button
+                android:text="+5"
+
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+
+
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_weight=".1"
+        android:text="BPM"
+        android:layout_gravity="center"
+        android:textColor="@android:color/white"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"/>
 
     <SeekBar
         android:id="@+id/seekBarTempo"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight=".5"
         app:srcCompat="@color/colorAccentLight"/>
 
     <android.support.design.widget.FloatingActionButton
@@ -34,9 +119,10 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:clickable="true"
-        app:fabSize="mini"
+        app:fabSize="normal"
         android:layout_weight="1"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/ic_play_arrow_white_36dp"/>
 
 
 </LinearLayout>
