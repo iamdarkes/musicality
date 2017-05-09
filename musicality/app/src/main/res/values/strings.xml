@@ -22,5 +22,8 @@
     <string name="add_one">+1</string>
     <string name="add_five">+5</string>
     <string name="title_BPM">BPM</string>
+
+    <string name="tuningPlane">Tuning Plane</string>
+
 </resources>
 

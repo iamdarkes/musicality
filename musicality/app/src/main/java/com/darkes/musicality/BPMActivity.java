@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.darkes.musicality.metronome.MetronomeA;
+import com.darkes.musicality.sgt.SimpleGuitarTunerActivity;
 
 public class BPMActivity extends AppCompatActivity {
 
@@ -77,7 +78,8 @@ public class BPMActivity extends AppCompatActivity {
 
             if(e2.getX() > e1.getX()) {
 
-                Intent intent = new Intent(BPMActivity.this, TunerActivity.class);
+                //Intent intent = new Intent(BPMActivity.this, TunerActivity.class);
+                Intent intent = new Intent(BPMActivity.this, SimpleGuitarTunerActivity.class);
                 finish();
                 startActivity(intent);
                 overridePendingTransition(R.anim.slide_in_left_right, R.anim.slide_out_left_right);
