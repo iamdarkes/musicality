@@ -27,7 +27,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.darkes.musicality.BPMActivity;
-import com.darkes.musicality.MetronomeActivity;
 import com.darkes.musicality.R;
 import com.darkes.musicality.TunerActivity;
 
@@ -105,6 +104,7 @@ public class MetronomeA extends Activity {
         arrayBeats.setDropDownViewResource(R.layout.spinner_dropdown);
         beatSpinner.setOnItemSelectedListener(beatsSpinnerListener);
 
+
         Spinner noteValuesdSpinner = (Spinner) findViewById(R.id.notespinner);
         ArrayAdapter<NoteValues> noteValues =
                 new ArrayAdapter<NoteValues>(this,
@@ -149,6 +149,7 @@ public class MetronomeA extends Activity {
         } else if(!minusButton.isEnabled() && bpm>minBpm) {
             minusButton.setEnabled(true);
         }
+
     }
 
     public void onPlusClick(View view) {
@@ -350,14 +351,14 @@ public class MetronomeA extends Activity {
                 startActivity(intent);
 
                 overridePendingTransition(R.anim.go_in, R.anim.go_out);
-                //overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+                //overridePendingTransition(R.anim.slide_in_right_left, R.anim.slide_out_right_left);
 
             } else
             if(e2.getX() < e1.getX()) {
                 Intent intent = new Intent(MetronomeA.this, TunerActivity.class);
                 finish();
                 startActivity(intent);
-                overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+                overridePendingTransition(R.anim.slide_in_right_left, R.anim.slide_out_right_left);
 
             }
 

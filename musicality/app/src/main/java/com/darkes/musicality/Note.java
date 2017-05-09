@@ -169,6 +169,31 @@ public class Note implements Serializable{
         this.difference = this.actualFrequency - this.frequency;
     }
 
+//    private void init(double frequency){
+//        if(frequency < 27.5000 || frequency > 4186.01){
+//            this.frequency = UNKNOWN_FREQUENCY;
+//            this.position = UNKNOWN_POSITION;
+//            this.note = UNKNOWN_NOTE;
+//            this.noteAboveFrequency = 29.1352;
+//            this.noteBelowFrequency = UNKNOWN_FREQUENCY;
+//            this.index = -1;
+//        }else{
+//            this.index = searchForNote(this.actualFrequency, GUITAR_STANDARD_FREQUENCIES,
+//                    0, GUITAR_STANDARD_FREQUENCIES.length);
+//            this.frequency = GUITAR_STANDARD_FREQUENCIES[index];
+//            if(index - 1 >= 0) {
+//                this.noteBelowFrequency = GUITAR_STANDARD_FREQUENCIES[index - 1];
+//            }
+//            if(index + 1 < GUITAR_STANDARD_FREQUENCIES.length) {
+//                this.noteAboveFrequency = GUITAR_STANDARD_FREQUENCIES[index + 1];
+//            }
+//            this.note = getNoteFromIndex(index);
+//            this.position = getPositionFromIndex(index);
+//        }
+//        this.difference = this.actualFrequency - this.frequency;
+//    }
+
+
     /*
      * A Binary Search recursive implementation that gets the closest piano note frequency from the frequency provided.
      * The return value is the index in the PIANO_NOTE_FREQUENCIES array where the appropriate value is stored.

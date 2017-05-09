@@ -168,15 +168,18 @@ public class TunerActivity extends AppCompatActivity {
 
             if(e2.getX() > e1.getX()) {
 
-                Intent intent = new Intent(TunerActivity.this, MetronomeA.class);
+                //Intent intent = new Intent(TunerActivity.this, MetronomeA.class);
+                Intent intent = new Intent(TunerActivity.this, MetronomeActivity.class);
                 finish();
                 startActivity(intent);
+                overridePendingTransition(R.anim.slide_in_left_right, R.anim.slide_out_left_right);
 
             } else
             if(e2.getX() < e1.getX()) {
                 Intent intent = new Intent(TunerActivity.this, BPMActivity.class);
                 finish();
                 startActivity(intent);
+                overridePendingTransition(R.anim.slide_in_right_left, R.anim.slide_out_right_left);
             }
 
             return true;

@@ -5,6 +5,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.GestureDetectorCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -18,6 +19,7 @@ public class BPMActivity extends AppCompatActivity {
     private FloatingActionButton mFloatingActionButtonBPM;
     private TextView mTextViewBPM;
     private int mCounter;
+    private Toolbar toolbar;
     private BpmCalculator bpmCalculator;
 
     @Override
@@ -26,6 +28,8 @@ public class BPMActivity extends AppCompatActivity {
         setContentView(R.layout.activity_bpm);
 
         //mTextViewBPM = (TextView) findViewById(R.id.BPMTextView);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         mFloatingActionButtonBPM = (FloatingActionButton) findViewById(R.id.floatingActionButtonBPM);
         gestureObject = new GestureDetectorCompat(this, new LearnGesture());
 
@@ -76,12 +80,15 @@ public class BPMActivity extends AppCompatActivity {
                 Intent intent = new Intent(BPMActivity.this, TunerActivity.class);
                 finish();
                 startActivity(intent);
+                overridePendingTransition(R.anim.slide_in_left_right, R.anim.slide_out_left_right);
 
             } else
             if(e2.getX() < e1.getX()) {
-                Intent intent = new Intent(BPMActivity.this, MetronomeA.class);
+                //Intent intent = new Intent(BPMActivity.this, MetronomeA.class);
+                Intent intent = new Intent(BPMActivity.this, MetronomeActivity.class);
                 finish();
                 startActivity(intent);
+                overridePendingTransition(R.anim.slide_in_right_left, R.anim.slide_out_right_left);
             }
 
             return true;
