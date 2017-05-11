@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import com.darkes.musicality.R;
+import com.darkes.musicality.metronome.Beats;
+
 public class Tuning {
 	public static final String TAG = "Tuning";
 
@@ -22,7 +25,7 @@ public class Tuning {
 		new TuningType("Standard",
 				new double[]{82.41, 110.00, 146.83, 196.00, 246.94, 329.63},
 				new String[]{"E","A","D","G","B","E"}) ,
-		new TuningType("Down a half step",
+		new TuningType("Half Step Down",
 				new double[]{77.78, 103.83, 138.59, 185.00, 233.08, 311.13},
 				new String[]{"D#","G#","C#","F#","A#","D#"}) ,
 		new TuningType("Dropped D",
@@ -50,10 +53,12 @@ public class Tuning {
 				new double[]{98.00, 123.47, 146.83, 196.00, 246.94, 293.66},
 				new String[]{"G","B","D","G","B","D"}) ,
 	};
+
+
 	
 	public static void populateSpinner(Activity parent, Spinner s) {
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(parent, 
-				android.R.layout.simple_spinner_item);
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(parent,
+              android.R.layout.simple_spinner_item);
 		for(int i=0; i<tuningTypes.length; ++i) {
 			String label=tuningTypes[i].humanReadableName + " (";
 			for(int j=0; j<tuningTypes[i].stringNames.length; ++j) {
@@ -62,7 +67,8 @@ public class Tuning {
 			}
 			adapter.add(label);
 		}
-	    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown);
+//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 	    s.setAdapter(adapter);
 	}
 	
@@ -101,9 +107,9 @@ public class Tuning {
 	}
 /*
 	private void outputStringsFrequencies() {
-		for(int i=0; i<strings.length; ++i) {
-			Log.d(TAG, strings[i].name + ": " + strings[i].freq + " e [" + 
-					strings[i].minFreq + "," + strings[i].maxFreq + "]");
+		for(int i=0; i<newstrings.length; ++i) {
+			Log.d(TAG, newstrings[i].name + ": " + newstrings[i].freq + " e [" +
+					newstrings[i].minFreq + "," + newstrings[i].maxFreq + "]");
 		}
 	}
 */

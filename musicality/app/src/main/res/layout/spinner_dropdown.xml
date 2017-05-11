@@ -7,4 +7,4 @@
                  android:singleLine="true"
                  android:textColor="@color/white"
                  android:background="@color/background"
-                 android:textSize="70px" />
+                 android:textSize="20dp" />

@@ -12,6 +12,9 @@ import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GestureDetectorCompat;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.KeyEvent;
@@ -30,7 +33,7 @@ import java.io.OutputStreamWriter;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SimpleGuitarTunerActivity extends Activity {
+public class SimpleGuitarTunerActivity extends AppCompatActivity {
 	// switch off gc logs.
 	// System.setProperty("log.tag.falvikvm", "SUPPRESS"); 
 	public static final String TAG = "Activity";
@@ -39,13 +42,15 @@ public class SimpleGuitarTunerActivity extends Activity {
 
 	
 	private ImageView guitar = null;
-	private ImageView tune = null;
+	//private ImageView tune = null;
 	private Spinner tuningSelector = null;
 	private SoundAnalyzer soundAnalyzer = null ;
 	private UiController uiController = null;
 	private TextView mainMessage = null;
     private GestureDetectorCompat gestureObject;
 	private Boolean permissionsGranted = false;
+    private Toolbar toolbar;
+
 
 
     private void requestRecordAudioPermission() {
@@ -115,8 +120,9 @@ public class SimpleGuitarTunerActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d(TAG,"onCreate()");
-        setContentView(R.layout.activity_main);
-
+        setContentView(R.layout.activity_simple_tuner);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         gestureObject = new GestureDetectorCompat(this, new LearnGesture());
 
@@ -157,7 +163,7 @@ public class SimpleGuitarTunerActivity extends Activity {
 
 
         guitar = (ImageView)findViewById(R.id.guitar);
-        tune = (ImageView)findViewById(R.id.tune);
+        //tune = (ImageView)findViewById(R.id.tune);
         mainMessage = (TextView)findViewById(R.id.mainMessage);
         tuningSelector = (Spinner)findViewById(R.id.tuningSelector);
         Tuning.populateSpinner(this, tuningSelector);
@@ -225,13 +231,20 @@ public class SimpleGuitarTunerActivity extends Activity {
 	}
 	
 	private int [] stringNumberToImageId = new int[]{
-			R.drawable.strings0,
-			R.drawable.strings1,
-			R.drawable.strings2,
-			R.drawable.strings3,
-			R.drawable.strings4,
-			R.drawable.strings5,
-			R.drawable.strings6
+            R.drawable.stringsreduced,
+            R.drawable.stringsreduced,
+            R.drawable.stringsreduced,
+            R.drawable.stringsreduced,
+            R.drawable.stringsreduced,
+            R.drawable.stringsreduced,
+			R.drawable.stringsreduced
+			//R.drawable.strings0,
+			//R.drawable.strings1,
+			//R.drawable.strings2,
+			//R.drawable.strings3,
+			//R.drawable.strings4,
+			//R.drawable.strings5,
+			//R.drawable.strings6
 	};
 	
 
@@ -250,13 +263,13 @@ public class SimpleGuitarTunerActivity extends Activity {
 	int [] awayFromTargetColor = new int[]{160,160,160};
 
     
-    public void coloredGuitarMatch(double match) {
-        tune.setBackgroundColor(
-        		Color.rgb((int)(match*targetColor[0]+ (1-match)*awayFromTargetColor[0]),
-        				  (int)(match*targetColor[1]+ (1-match)*awayFromTargetColor[1]),
-        				  (int)(match*targetColor[2]+ (1-match)*awayFromTargetColor[2])));
-        
-    }
+//    public void coloredGuitarMatch(double match) {
+//        tune.setBackgroundColor(
+//        		Color.rgb((int)(match*targetColor[0]+ (1-match)*awayFromTargetColor[0]),
+//        				  (int)(match*targetColor[1]+ (1-match)*awayFromTargetColor[1]),
+//        				  (int)(match*targetColor[2]+ (1-match)*awayFromTargetColor[2])));
+//
+//    }
     
     public void displayMessage(String msg, boolean positiveFeedback) {
     	int textColor = positiveFeedback ? Color.rgb(34,139,34) : Color.rgb(255,36,0);

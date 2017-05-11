@@ -84,7 +84,7 @@ public class UiController implements Observer, OnItemSelectedListener {
 				match = (current.maxFreq - frequency )/(current.maxFreq-current.freq);
 			}
 		}
-		ui.coloredGuitarMatch(Math.pow(match, 1.5));
+		//ui.coloredGuitarMatch(Math.pow(match, 1.5));
 		
 		// Update message. 
 		// If cannot decide on a string
