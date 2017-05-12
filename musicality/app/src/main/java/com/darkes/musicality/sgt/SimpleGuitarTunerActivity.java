@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -49,6 +50,7 @@ public class SimpleGuitarTunerActivity extends AppCompatActivity {
 	private TextView mainMessage = null;
     private GestureDetectorCompat gestureObject;
 	private Boolean permissionsGranted = false;
+    private TextView noteTextView = null;
     private Toolbar toolbar;
 
 
@@ -120,7 +122,8 @@ public class SimpleGuitarTunerActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d(TAG,"onCreate()");
-        setContentView(R.layout.activity_simple_tuner);
+
+		setContentView(R.layout.activity_simple_tuner);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -164,6 +167,7 @@ public class SimpleGuitarTunerActivity extends AppCompatActivity {
 
         guitar = (ImageView)findViewById(R.id.guitar);
         //tune = (ImageView)findViewById(R.id.tune);
+        noteTextView = (TextView) findViewById(R.id.noteTextView);
         mainMessage = (TextView)findViewById(R.id.mainMessage);
         tuningSelector = (Spinner)findViewById(R.id.tuningSelector);
         Tuning.populateSpinner(this, tuningSelector);
@@ -231,13 +235,27 @@ public class SimpleGuitarTunerActivity extends AppCompatActivity {
 	}
 	
 	private int [] stringNumberToImageId = new int[]{
-            R.drawable.stringsreduced,
-            R.drawable.stringsreduced,
-            R.drawable.stringsreduced,
-            R.drawable.stringsreduced,
-            R.drawable.stringsreduced,
-            R.drawable.stringsreduced,
-			R.drawable.stringsreduced
+            R.drawable.oguitar0,
+            R.drawable.oguitar1,
+            R.drawable.oguitar2,
+            R.drawable.oguitar3,
+            R.drawable.oguitar4,
+            R.drawable.oguitar5,
+            R.drawable.oguitar6
+//            R.drawable.guitarstrings1,
+//            R.drawable.guitarstrings2,
+//            R.drawable.guitarstrings3,
+//            R.drawable.guitarstrings4,
+//            R.drawable.guitarstrings5,
+//            R.drawable.guitarstrings6
+
+//            R.drawable.stringsreduced,
+//            R.drawable.stringsreduced,
+//            R.drawable.stringsreduced,
+//            R.drawable.stringsreduced,
+//            R.drawable.stringsreduced,
+//            R.drawable.stringsreduced,
+//			R.drawable.stringsreduced
 			//R.drawable.strings0,
 			//R.drawable.strings1,
 			//R.drawable.strings2,
@@ -272,11 +290,24 @@ public class SimpleGuitarTunerActivity extends AppCompatActivity {
 //    }
     
     public void displayMessage(String msg, boolean positiveFeedback) {
-    	int textColor = positiveFeedback ? Color.rgb(34,139,34) : Color.rgb(255,36,0);
+        //int textColor = positiveFeedback ? Color.rgb(34,139,34) : Color.rgb(255,36,0);
+        //color accent dark orang "#FF8300"
+        //int textColor = positiveFeedback ? Color.rgb(34,139,34) : Color.parseColor("#FF8300");
+        //int textColor = positiveFeedback ? Color.parseColor("#DDDDDD") : Color.parseColor("#FF8300");
     	mainMessage.setText(msg);
-    	mainMessage.setTextColor(textColor);
+        //mainMessage.setTextColor(textColor);
+        mainMessage.setTextColor(Color.parseColor("#DDDDDD"));
     }
-    
+
+
+    public void setNoteTextView(String note) {
+        noteTextView.setText(note);
+    }
+
+    public void setNoteTextViewColor(String color) {
+        Log.i("col", color);
+        noteTextView.setTextColor(Color.parseColor(color));
+    }
     
 
 

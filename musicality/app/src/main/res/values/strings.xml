@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">Musicality</string>
+    <string name="toolbar_metronome">Metronome</string>
+    <string name="toolbar_bpm">BPM Calculator</string>
+    <string name="toolbar_guitar_tuner">Guitar Tuner</string>
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="tap_again">Tap Again</string>

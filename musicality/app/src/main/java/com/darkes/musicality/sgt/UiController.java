@@ -107,22 +107,46 @@ public class UiController implements Observer, OnItemSelectedListener {
 		}
 		switch(message) {
 			case TUNING_IN_PROGRESS:
-				ui.displayMessage("Currently tuning string " + current.name +
-						" from " + tuning.getName() + " tuning, matched in " + 
-						Math.round(100.0*match) + "%.", true);
+			    ui.setNoteTextView(current.name);
+
+                if (match > 0.95) {
+					//ui.setNoteTextViewColor("#007084");
+					ui.setNoteTextViewColor("#FF8300");
+
+
+				} else if(match > 0.90) {
+					//ui.setNoteTextViewColor("#0096a9");
+					ui.setNoteTextViewColor("#FFA136");
+                    Log.i("co", match + "");
+                } else {
+                    Log.i("cdo", match + "");
+
+					//ui.setNoteTextViewColor("#DDDDDD");
+					ui.setNoteTextViewColor("#FFFFFF");
+                    Log.i("coe", "dd");
+                }
+
+//				ui.displayMessage("Currently tuning string " + current.name +
+//						" from " + tuning.getName() + " tuning, matched in " +
+//						Math.round(100.0*match) + "%.", true);
+
+                ui.displayMessage("" +
+                        Math.round(100.0*match) + "%", true);
 				break;
 			case TOO_NOISY:
-				ui.displayMessage("Please reduce background noise (or play louder).", false);
-				break;
+				//ui.displayMessage("Please reduce background noise (or play louder).", false);
+                ui.displayMessage("Please reduce background noise.", false);
+                break;
 			case TOO_QUIET:
 				ui.displayMessage("Please play louder!", false);
 				break;
 			case WEIRD_FREQUENCY:
-				ui.displayMessage("Are you sure instrument you are playing is guitar? :)", false);
+				ui.displayMessage("This instrument is not a guitar.", false);
 			default:
 				Log.d(TAG, "No message");
 		}
 	}
+
 
 	@Override
 	public void onItemSelected(AdapterView<?> parent, View thing, int itemno,

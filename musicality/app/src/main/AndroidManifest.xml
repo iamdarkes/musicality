@@ -30,7 +30,8 @@
         </activity>
         <activity
             android:name=".MetronomeActivity"
-            android:label="@string/app_name">
+            android:screenOrientation="portrait"
+            android:label="@string/toolbar_metronome" >
             <!--android:theme="@style/AppTheme.NoActionBar">-->
 
 <!--THIS IS MAIN-->
@@ -43,7 +44,9 @@
 
         <receiver android:name=".NotificationPublishReceiver"/>
 
-        <activity android:name=".BPMActivity">
+        <activity android:name=".BPMActivity"
+                  android:label="@string/toolbar_bpm"
+                  android:screenOrientation="portrait">
 
 
         </activity>
@@ -52,7 +55,9 @@
             
         </activity>
 
-        <activity android:name=".sgt.SimpleGuitarTunerActivity">
+        <activity android:name=".sgt.SimpleGuitarTunerActivity"
+                  android:label="@string/toolbar_guitar_tuner"
+                  android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

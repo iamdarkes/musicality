@@ -19,8 +19,17 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_gravity="center_horizontal"
-        android:layout_weight="2"/>
+        android:layout_weight="1"/>
 
+    <TextView
+        android:layout_weight="1"
+        android:text="@string/title_BPM"
+        android:textSize="16sp"
+        android:textAlignment="gravity"
+        android:gravity="center_horizontal"
+        android:textColor="@android:color/white"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"/>
 
 
     <android.support.design.widget.FloatingActionButton
@@ -29,12 +38,13 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:clickable="true"
-        app:fabSize="mini"
-        android:src="@drawable/ic_touch_app_white_24dp"
-
+        app:fabSize="normal"
+        android:src="@drawable/ic_touch_app_white_36dp"
         android:layout_gravity="center_horizontal"
         app:srcCompat="@color/colorAccentLight"
         />
     <!--app:rippleColor="@color/colorAccentLight"-->
+
+
 
 </LinearLayout>
