@@ -32,6 +32,11 @@
             android:name=".MetronomeActivity"
             android:screenOrientation="portrait"
             android:label="@string/toolbar_metronome" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
             <!--android:theme="@style/AppTheme.NoActionBar">-->
 
 <!--THIS IS MAIN-->
@@ -52,17 +57,13 @@
         </activity>
 
         <activity android:name=".metronome.MetronomeA">
-            
+
         </activity>
 
         <activity android:name=".sgt.SimpleGuitarTunerActivity"
                   android:label="@string/toolbar_guitar_tuner"
                   android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
     </application>
 

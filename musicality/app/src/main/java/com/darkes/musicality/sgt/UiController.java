@@ -117,13 +117,10 @@ public class UiController implements Observer, OnItemSelectedListener {
 				} else if(match > 0.90) {
 					//ui.setNoteTextViewColor("#0096a9");
 					ui.setNoteTextViewColor("#FFA136");
-                    Log.i("co", match + "");
                 } else {
-                    Log.i("cdo", match + "");
 
 					//ui.setNoteTextViewColor("#DDDDDD");
 					ui.setNoteTextViewColor("#FFFFFF");
-                    Log.i("coe", "dd");
                 }
 
 //				ui.displayMessage("Currently tuning string " + current.name +

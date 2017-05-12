@@ -296,7 +296,7 @@ public class SimpleGuitarTunerActivity extends AppCompatActivity {
         //int textColor = positiveFeedback ? Color.parseColor("#DDDDDD") : Color.parseColor("#FF8300");
     	mainMessage.setText(msg);
         //mainMessage.setTextColor(textColor);
-        mainMessage.setTextColor(Color.parseColor("#DDDDDD"));
+        mainMessage.setTextColor(Color.parseColor("#FFFFFF"));
     }
 
 

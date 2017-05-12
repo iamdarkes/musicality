@@ -8,11 +8,13 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.BoolRes;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.GestureDetectorCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -58,6 +60,7 @@ public class MetronomeActivity extends AppCompatActivity{
     private TextView seekBarTextView;
     private GestureDetectorCompat gestureObject;
 
+    private Beats beat;
     private Handler handler;
 
     // have in mind that: http://stackoverflow.com/questions/11407943/this-handler-class-should-be-static-or-leaks-might-occur-incominghandler
@@ -99,6 +102,9 @@ public class MetronomeActivity extends AppCompatActivity{
         seekBarTempo = (SeekBar) findViewById(R.id.seekBarTempo);
         seekBarTextView = (TextView) findViewById(R.id.tempoTextView);
 
+        seekBarTempo.setMax(300);
+
+
 
         Spinner beatSpinner = (Spinner) findViewById(R.id.beatspinner);
         ArrayAdapter<Beats> arrayBeats =
@@ -116,6 +122,9 @@ public class MetronomeActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 if(!playing) {
+                    Log.i("setbeatfab", beat.getNum() + "");
+                    //metroTask.setBeat(beat.getNum());
+
                     metroTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, (Void[]) null);
                     playing = true;
                     playStopFAB.setImageResource(R.drawable.ic_stop_white_36dp);
@@ -135,8 +144,13 @@ public class MetronomeActivity extends AppCompatActivity{
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 bpm = (short) (progress);
                 seekBarTextView.setText("" + bpm);
-                if(bpm != 0)
+
+                if(bpm == 0) {
+                    playStopFAB.setEnabled(false);
+                } else {
+                    playStopFAB.setEnabled(true);
                     metroTask.setBpm(bpm);
+                }
                 //minBpmGuard();
                 //maxBpmGuard();
                 //seekBarTextView.setText(Integer.toString(progress * 3));
@@ -171,7 +185,6 @@ public class MetronomeActivity extends AppCompatActivity{
         addFiveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 bpm = (bpm + 5 > MAX_BPM) ? MAX_BPM : (bpm += 5);
                 seekBarTempo.setProgress(bpm);
                 seekBarTextView.setText("" + bpm);
@@ -209,9 +222,17 @@ public class MetronomeActivity extends AppCompatActivity{
         public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
                                    long arg3) {
             // TODO Auto-generated method stub
-            Beats beat = (Beats) arg0.getItemAtPosition(arg2);
+
+
+//            Beats beat = (Beats) arg0.getItemAtPosition(arg2);
+            beat = (Beats) arg0.getItemAtPosition(arg2);
+
+
+
             //TextView timeSignature = (TextView) findViewById(R.id.timesignature);
             //timeSignature.setText(""+beat+"/"+noteValue);
+            Log.i("setbeatadapt", beat.getNum() + "");
+
             metroTask.setBeat(beat.getNum());
         }
 
@@ -232,7 +253,10 @@ public class MetronomeActivity extends AppCompatActivity{
         }
 
         protected String doInBackground(Void... params) {
-            metronome.setBeat(beats);
+            Log.i("background", beats + "");
+
+            metronome.setBeat(beat.getNum());
+
             metronome.setNoteValue(noteValue);
             metronome.setBpm(bpm);
             metronome.setBeatSound(beatSound);
@@ -302,8 +326,6 @@ public class MetronomeActivity extends AppCompatActivity{
     }
 
     class LearnGesture extends GestureDetector.SimpleOnGestureListener {
-
-
         @Override
         public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
 
