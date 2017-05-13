@@ -127,7 +127,10 @@ public class SimpleGuitarTunerActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        gestureObject = new GestureDetectorCompat(this, new LearnGesture());
+		getSupportActionBar().setTitle(R.string.toolbar_guitar_tuner);
+
+
+		gestureObject = new GestureDetectorCompat(this, new LearnGesture());
 
         uiController = new UiController(SimpleGuitarTunerActivity.this);
 

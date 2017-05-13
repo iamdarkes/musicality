@@ -58,6 +58,7 @@ public class BPMActivity extends AppCompatActivity {
         //mTextViewBPM = (TextView) findViewById(R.id.BPMTextView);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(R.string.toolbar_bpm);
         mFloatingActionButtonBPM = (FloatingActionButton) findViewById(R.id.floatingActionButtonBPM);
         gestureObject = new GestureDetectorCompat(this, new LearnGesture());
 

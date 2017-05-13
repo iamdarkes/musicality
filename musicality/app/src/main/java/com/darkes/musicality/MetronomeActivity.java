@@ -94,6 +94,7 @@ public class MetronomeActivity extends AppCompatActivity{
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(R.string.toolbar_metronome);
         playStopFAB = (FloatingActionButton) findViewById(R.id.playStopFAB);
         addOneButton = (Button) findViewById(R.id.addOneButton);
         addFiveButton = (Button) findViewById(R.id.addFiveButton);
