@@ -5,26 +5,16 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.support.v4.app.NotificationCompat;
 
 import com.darkes.musicality.R;
+import com.darkes.musicality.bpm.BpmActivity;
+import com.darkes.musicality.metronome.MetronomeActivity;
 import com.darkes.musicality.tuner.GuitarTunerActivity;
 
-/*
- * Copyright 2016 chRyNaN
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *  http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+import java.util.Random;
 
 /**
  * This class is a BroadcastReceiver that is triggered from an AlarmManager after a certain amount
@@ -32,8 +22,16 @@ import com.darkes.musicality.tuner.GuitarTunerActivity;
  * the application.
  */
 public class NotificationPublishReceiver extends BroadcastReceiver {
-    public static final String NOTIFICATION_TITLE = "Stay in tune!";
-    public static final String NOTIFICATION_TEXT = "Make sure your guitar is in tune.";
+    public static final String NOTIFICATION_TITLE1 = "Stay in tune!";
+    public static final String NOTIFICATION_TEXT1 = "Make sure your guitar is in tune.";
+    public static final String NOTIFICATION_TITLE2 = "Keep in tempo!";
+    public static final String NOTIFICATION_TEXT2 = "Make sure you're in tempo when you play.";
+    public static final String NOTIFICATION_TITLE3 = "What bpm is that in?";
+    public static final String NOTIFICATION_TEXT3 = "Find out its bpm.";
+    String [] notificationTitle = {NOTIFICATION_TITLE1, NOTIFICATION_TITLE2, NOTIFICATION_TITLE3};
+    String [] notificationText = {NOTIFICATION_TEXT1, NOTIFICATION_TEXT2, NOTIFICATION_TEXT3};
+    int [] drawable = {R.drawable.tuning_fork_white, R.drawable.metronome_white, R.drawable.bpm_white};
+
     public static final int REQUEST_CODE = 0;
     public static final int ID = 1;
 
@@ -41,11 +39,23 @@ public class NotificationPublishReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
-        builder.setContentTitle(NOTIFICATION_TITLE);
-        builder.setContentText(NOTIFICATION_TEXT);
-        builder.setSmallIcon(R.mipmap.ic_launcher);
+        int random = new Random().nextInt(3);
+        builder.setContentTitle(notificationTitle[random]);
+        builder.setContentText(notificationText[random]);
+        builder.setSmallIcon(drawable[random]);
+        builder.setColor(Color.parseColor("#0096a9"));
         builder.setAutoCancel(true);
-        Intent i = new Intent(context, GuitarTunerActivity.class);
+        Intent i;
+        switch (random){
+            case 0:
+                i = new Intent(context, GuitarTunerActivity.class);
+                break;
+            case 1:
+                i = new Intent(context, MetronomeActivity.class);
+                break;
+            default:
+                i = new Intent(context, BpmActivity.class);
+        }
         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, REQUEST_CODE, i, 0);
         builder.setContentIntent(pendingIntent);

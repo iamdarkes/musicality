@@ -14,6 +14,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.GestureDetector;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -25,7 +27,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 
-import com.darkes.musicality.bpm.BPMActivity;
+import com.darkes.musicality.bpm.BpmActivity;
 import com.darkes.musicality.R;
 import com.darkes.musicality.tuner.GuitarTunerActivity;
 
@@ -80,6 +82,30 @@ public class MetronomeActivity extends AppCompatActivity{
         };
     }
 
+    //share button
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    //implicit intent for sharing app
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()) {
+            case R.id.action_share:
+                Intent i = new Intent(Intent.ACTION_SEND);
+                i.setType("text/plain");
+                i.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_message_content));
+                i.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.share_message_subject));
+                i = Intent.createChooser(i, getString(R.string.share_message_detail));
+                startActivity(i);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -106,11 +132,7 @@ public class MetronomeActivity extends AppCompatActivity{
         bpmImageButton = (ImageButton) findViewById(R.id.bottomBpmButton);
         tunerImageButton = (ImageButton) findViewById(R.id.bottomTuningButton);
 
-
-
         seekBarTempo.setMax(300);
-
-
 
         Spinner beatSpinner = (Spinner) findViewById(R.id.beatspinner);
         ArrayAdapter<Beats> arrayBeats =
@@ -128,9 +150,7 @@ public class MetronomeActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 if(!playing) {
-                    Log.i("setbeatfab", beat.getNum() + "");
-                    //metroTask.setBeat(beat.getNum());
-
+                    //Log.i("setbeatfab", beat.getNum() + "");
                     metroTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, (Void[]) null);
                     playing = true;
                     playStopFAB.setImageResource(R.drawable.ic_stop_white_36dp);
@@ -157,12 +177,6 @@ public class MetronomeActivity extends AppCompatActivity{
                     playStopFAB.setEnabled(true);
                     metroTask.setBpm(bpm);
                 }
-                //minBpmGuard();
-                //maxBpmGuard();
-                //seekBarTextView.setText(Integer.toString(progress * 3));
-                //bpm = (short) (progress * 3);
-                //metroTask.setBpm((short) (progress * 3));
-                //seekBarTextView.setText(Integer.toString(progress * 3));
             }
 
             @Override
@@ -183,7 +197,6 @@ public class MetronomeActivity extends AppCompatActivity{
                 seekBarTextView.setText("" + bpm);
                 metroTask.setBpm(bpm);
                 seekBarTempo.setProgress(bpm);
-                //maxBpmGuard();
             }
         });
 
@@ -195,7 +208,6 @@ public class MetronomeActivity extends AppCompatActivity{
                 seekBarTempo.setProgress(bpm);
                 seekBarTextView.setText("" + bpm);
                 metroTask.setBpm(bpm);
-                //maxBpmGuard();
             }
         });
 
@@ -206,7 +218,6 @@ public class MetronomeActivity extends AppCompatActivity{
                 seekBarTextView.setText("" + bpm);
                 metroTask.setBpm(bpm);
                 seekBarTempo.setProgress(bpm);
-                //minBpmGuard();
             }
         });
 
@@ -217,14 +228,13 @@ public class MetronomeActivity extends AppCompatActivity{
                 seekBarTextView.setText("" + bpm);
                 metroTask.setBpm(bpm);
                 seekBarTempo.setProgress(bpm);
-                //minBpmGuard();
             }
         });
 
         bpmImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MetronomeActivity.this, BPMActivity.class);
+                Intent intent = new Intent(MetronomeActivity.this, BpmActivity.class);
                 finish();
                 startActivity(intent);
             }
@@ -246,16 +256,8 @@ public class MetronomeActivity extends AppCompatActivity{
         public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
                                    long arg3) {
             // TODO Auto-generated method stub
-
-
-//            Beats beat = (Beats) arg0.getItemAtPosition(arg2);
             beat = (Beats) arg0.getItemAtPosition(arg2);
-
-
-
-            //TextView timeSignature = (TextView) findViewById(R.id.timesignature);
-            //timeSignature.setText(""+beat+"/"+noteValue);
-            Log.i("setbeatadapt", beat.getNum() + "");
+//            Log.i("setbeatadapt", beat.getNum() + "");
 
             metroTask.setBeat(beat.getNum());
         }
@@ -263,7 +265,6 @@ public class MetronomeActivity extends AppCompatActivity{
         @Override
         public void onNothingSelected(AdapterView<?> arg0) {
             // TODO Auto-generated method stub
-
         }
 
     };
@@ -277,10 +278,9 @@ public class MetronomeActivity extends AppCompatActivity{
         }
 
         protected String doInBackground(Void... params) {
-            Log.i("background", beats + "");
+            //Log.i("background", beats + "");
 
             metronome.setBeat(beat.getNum());
-
             metronome.setNoteValue(noteValue);
             metronome.setBpm(bpm);
             metronome.setBeatSound(beatSound);
@@ -308,41 +308,7 @@ public class MetronomeActivity extends AppCompatActivity{
 
     }
 
-    private void maxBpmGuard() {
-        if(bpm >= MAX_BPM) {
-            addOneButton.setEnabled(false);
-            addOneButton.setPressed(false);
-        } else if(!minusOneButton.isEnabled() && bpm > MIN_BPM) {
-            minusOneButton.setEnabled(true);
-        }
-
-        if(bpm + 5 > MAX_BPM) {
-            addFiveButton.setEnabled(false);
-            addFiveButton.setPressed(false);
-        } else if(!minusFiveButton.isEnabled() && bpm - 5 > MIN_BPM) {
-            minusFiveButton.setEnabled(true);
-        }
-
-    }
-
-
-    private void minBpmGuard() {
-        if(bpm <= MIN_BPM) {
-            minusOneButton.setEnabled(false);
-            minusOneButton.setPressed(false);
-        } else if(!addOneButton.isEnabled() && bpm < MAX_BPM) {
-            addOneButton.setEnabled(true);
-        }
-
-        if(bpm - 5 <= MIN_BPM) {
-            minusFiveButton.setEnabled(false);
-            minusFiveButton.setPressed(false);
-        } else if(!addFiveButton.isEnabled() && bpm - 5 < MAX_BPM) {
-            addFiveButton.setEnabled(true);
-        }
-    }
-
-
+    //responsible for swipe
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         this.gestureObject.onTouchEvent(event);
@@ -355,7 +321,7 @@ public class MetronomeActivity extends AppCompatActivity{
 
             if(e2.getX() > e1.getX()) {
 
-                Intent intent = new Intent(MetronomeActivity.this, BPMActivity.class);
+                Intent intent = new Intent(MetronomeActivity.this, BpmActivity.class);
                 finish();
                 startActivity(intent);
                 overridePendingTransition(R.anim.slide_in_left_right, R.anim.slide_out_left_right);

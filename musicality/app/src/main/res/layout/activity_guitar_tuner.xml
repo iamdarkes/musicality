@@ -101,7 +101,7 @@
 
         <ImageButton
             android:id="@+id/bottomMetronomeButton"
-            app:srcCompat="@drawable/metronome"
+            app:srcCompat="@drawable/metronome_white"
             android:scaleType="centerInside"
             android:layout_weight="1"
             android:layout_width="0dp"
@@ -110,7 +110,7 @@
 
         <ImageButton
             android:id="@+id/bottomTuningButton"
-            app:srcCompat="@drawable/tuningfork"
+            app:srcCompat="@drawable/tuning_fork_blue"
             android:scaleType="centerInside"
             android:layout_weight="1"
             android:layout_width="0dp"

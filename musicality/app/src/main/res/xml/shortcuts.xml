@@ -3,14 +3,14 @@
     <shortcut
         android:shortcutId="bpm"
         android:enabled="true"
-        android:icon="@drawable/bpm"
-        android:shortcutShortLabel="@string/title_BPM"
+        android:icon="@drawable/bpm_blue"
+        android:shortcutShortLabel="@string/title_bpm"
         android:shortcutLongLabel="@string/toolbar_bpm"
         android:shortcutDisabledMessage="@string/toolbar_bpm">
         <intent
             android:action="android.intent.action.VIEW"
             android:targetPackage="com.darkes.musicality"
-            android:targetClass="com.darkes.musicality.bpm.BPMActivity" />
+            android:targetClass="com.darkes.musicality.bpm.BpmActivity" />
         <categories android:name="android.shortcut.bpm" />
     </shortcut>
 
@@ -31,7 +31,7 @@
     <shortcut
         android:shortcutId="guitarTuner"
         android:enabled="true"
-        android:icon="@drawable/tuningfork"
+        android:icon="@drawable/tuning_fork_blue"
         android:shortcutShortLabel="@string/toolbar_guitar_tuner"
         android:shortcutLongLabel="@string/toolbar_guitar_tuner"
         android:shortcutDisabledMessage="@string/toolbar_guitar_tuner">

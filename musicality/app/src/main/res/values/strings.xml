@@ -12,9 +12,10 @@
     <string name="minus_five">-5</string>
     <string name="add_one">+1</string>
     <string name="add_five">+5</string>
-    <string name="title_BPM">BPM</string>
+    <string name="title_bpm">BPM</string>
 
     <string name="share_message_subject">Musicality - Musician Utility App</string>
+    <string name="share_message_content">Try out this amazing musician app! https://tinyurl.com/musicalityapp</string>
     <string name="share_message_detail">Share Musicality via</string>
 </resources>
 

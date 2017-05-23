@@ -104,7 +104,7 @@
 
     <TextView
         android:layout_weight=".2"
-        android:text="@string/title_BPM"
+        android:text="@string/title_bpm"
         android:textSize="16sp"
         android:layout_gravity="center"
         android:textColor="@android:color/white"
@@ -154,16 +154,6 @@
         android:layout_height="wrap_content">
 
         <ImageButton
-            android:id="@+id/bottomBpmButton"
-            app:srcCompat="@drawable/bpm_white"
-            android:background="@null"
-            android:scaleType="centerInside"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="?attr/actionBarSize"/>
-
-
-        <ImageButton
             android:id="@+id/bottomMetronomeButton"
             app:srcCompat="@drawable/metronome_blue"
             android:scaleType="centerInside"
@@ -174,15 +164,21 @@
 
         <ImageButton
             android:id="@+id/bottomTuningButton"
-            app:srcCompat="@drawable/white_fork"
+            app:srcCompat="@drawable/tuning_fork_white"
             android:scaleType="centerInside"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:background="@null"
             android:layout_height="?attr/actionBarSize"/>
 
-
-
+        <ImageButton
+            android:id="@+id/bottomBpmButton"
+            app:srcCompat="@drawable/bpm_white"
+            android:background="@null"
+            android:scaleType="centerInside"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="?attr/actionBarSize"/>
 
     </LinearLayout>
 

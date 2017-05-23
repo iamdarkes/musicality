@@ -19,7 +19,8 @@ public class Tuning {
 			stringNames = sn;
 		}
 	}
-	
+	//new tunings v1.0.1 drop C#, drop C, drop B, drop A, DADGAD, full step down,
+    //half step up, open F,
 	private static TuningType [] tuningTypes = new TuningType[]{
 		new TuningType("Standard",
 				new double[]{82.41, 110.00, 146.83, 196.00, 246.94, 329.63},
@@ -27,12 +28,30 @@ public class Tuning {
 		new TuningType("Half Step Down",
 				new double[]{77.78, 103.83, 138.59, 185.00, 233.08, 311.13},
 				new String[]{"D#","G#","C#","F#","A#","D#"}) ,
-		new TuningType("Dropped D",
+        new TuningType("Full Step Down",
+                new double[] {73.416, 97.999, 130.813, 174.614, 220.00, 293.665},
+                new String[] {"D","G","C","F","A","D"}),
+        new TuningType("Half Step Up",
+                new double[] {77.782, 116.541, 155.563, 207.652, 261.626, 349.228},
+                new String [] {"E#","A#","D#","G#","B#","E#"}),
+		new TuningType("Drop D",
 				new double[]{73.42, 110.00, 146.83, 196.00, 246.94, 329.63},
 				new String[]{"D","A","D","G","B","E"}) ,
-		new TuningType("Double Dropped D",
+		new TuningType("Double Drop D",
 				new double[]{73.42, 110.00, 146.83, 196.00, 246.94, 293.66},
-				new String[]{"D","A","D","G","B","D"}) ,
+                new String[]{"D","A","D","G","B","D"}) ,
+        new TuningType("Drop C#",
+            new double[]{69.30, 103.83, 138.59, 185.00, 233.08, 311.13},
+            new String[] {"C#","G#","C#","F#","A#","D#"}),
+        new TuningType("Drop C",
+                new double[]{65.41, 98.00, 130.81, 174.614, 220.00, 293.665},
+                new String[] {"C","G","C","F","A","D"}),
+        new TuningType("Drop B",
+                new double[] {61.74, 92.50, 123.471, 164.814, 207.652, 277.183},
+                new String[] {"B","F#","B","E","G#","C#"}),
+        new TuningType("Drop A",
+                new double[] {55.000, 82.407, 110.000, 146.832, 184.997, 246.942},
+                new String[] {"A","E","A","D","F#","B"}),
 		new TuningType("Open A",
 				new double[]{82.41, 110.00, 164.81, 220.00, 277.18, 329.63},
 				new String[]{"E","A","E","A","C#","E"}) ,
@@ -48,9 +67,16 @@ public class Tuning {
 		new TuningType("Open Em",
 				new double[]{82.41, 123.47, 164.81, 196.00, 246.94, 329.63},
 				new String[]{"E","B","E","G","B","E"}) ,
+        new TuningType("Open F",
+                new double[] {87.307, 110.00, 103.826, 174.614, 261.626, 349.228},
+                new String[] {"F","A","C","F","C","F"}),
 		new TuningType("Open G",
 				new double[]{98.00, 123.47, 146.83, 196.00, 246.94, 293.66},
 				new String[]{"G","B","D","G","B","D"}) ,
+        new TuningType("DADGAD",
+                new double[] {73.416, 110.000, 146.832, 195.998, 220.000, 293.665},
+                new String[] {"D","A","D","G","A","D"})
+
 	};
 
 

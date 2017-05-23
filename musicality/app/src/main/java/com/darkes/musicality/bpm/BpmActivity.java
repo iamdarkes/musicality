@@ -19,46 +19,42 @@ import com.darkes.musicality.R;
 import com.darkes.musicality.metronome.MetronomeActivity;
 import com.darkes.musicality.tuner.GuitarTunerActivity;
 
-import org.w3c.dom.Text;
-
 import java.util.Timer;
 
-public class BPMActivity extends AppCompatActivity {
+public class BpmActivity extends AppCompatActivity {
 
-    private GestureDetectorCompat gestureObject;
-    private FloatingActionButton mFloatingActionButtonBPM;
-    private TextView mTextViewBPM;
-    private int mCounter;
-    private Toolbar toolbar;
-    Timer timer;
-    private ImageButton metronomeImageButton;
-    private ImageButton tunerImageButton;
+    private GestureDetectorCompat mGestureObject;
+    private FloatingActionButton mBpmFloatingActionButton;
+    private Toolbar mToolbar;
+    Timer mTimer;
+    private ImageButton mMetronomeImageButton;
+    private ImageButton mTunerImageButton;
     public static long RESET_DURATION = 2000;
 
-    private BpmCalculator bpmCalculator;
-    static final String BPM_COUNTER = "bpm";
+    private BpmCalculator mBpmCalculator;
+    static final String BPM_COUNTER = "bpm_blue";
     static final String TAP_COUNTER = "tap";
     private int mBpm = 0;
-    private int tapCount = 0;
-    private TextView curTapCountTextView;
-    private TextView prevTapCountTextView;
-    private TextView prevBpmTextView;
+    private int mTapCount = 0;
+    private TextView mCurTapCountTextView;
+    private TextView mPrevTapCountTextView;
+    private TextView mPrevBpmTextView;
 
-//
-    //uncomment to add share button
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.menu_main, menu);
-//        return true;
-//    }
+    //share button
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
 
+    //implicit intent for sharing app
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()) {
             case R.id.action_share:
                 Intent i = new Intent(Intent.ACTION_SEND);
                 i.setType("text/plain");
-                i.putExtra(Intent.EXTRA_TEXT, shareMessage());
+                i.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_message_content));
                 i.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.share_message_subject));
                 i = Intent.createChooser(i, getString(R.string.share_message_detail));
                 startActivity(i);
@@ -68,11 +64,12 @@ public class BPMActivity extends AppCompatActivity {
         }
     }
 
+    //save counter state
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         outState.putInt(BPM_COUNTER, mBpm);
         super.onSaveInstanceState(outState);
-        Log.i("save", mBpm + "");
+        //Log.i("save", mBpm + "");
     }
 
     @Override
@@ -80,72 +77,64 @@ public class BPMActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bpm);
 
-
         if(savedInstanceState != null) {
-            Log.i("saved", mBpm + "");
+            //Log.i("saved", mBpm + "");
             mBpm = savedInstanceState.getInt(BPM_COUNTER, 0);
             TextView bpmTextView = (TextView) findViewById(R.id.BPMTextView);
             bpmTextView.setText(Integer.valueOf(mBpm).toString());
-            Log.i("savedafter", mBpm + "");
+            //Log.i("savedafter", mBpm + "");
         }
 
-
-        //mTextViewBPM = (TextView) findViewById(R.id.BPMTextView);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle(R.string.toolbar_bpm);
-        metronomeImageButton = (ImageButton) findViewById(R.id.bottomMetronomeButton);
-        tunerImageButton = (ImageButton) findViewById(R.id.bottomTuningButton);
-        mFloatingActionButtonBPM = (FloatingActionButton) findViewById(R.id.floatingActionButtonBPM);
-        curTapCountTextView = (TextView) findViewById(R.id.currentCountTextView);
-        prevTapCountTextView = (TextView) findViewById(R.id.previousCountTextView);
-        prevBpmTextView = (TextView) findViewById(R.id.previousBpmTextView);
-        gestureObject = new GestureDetectorCompat(this, new LearnGesture());
+        mMetronomeImageButton = (ImageButton) findViewById(R.id.bottomMetronomeButton);
+        mTunerImageButton = (ImageButton) findViewById(R.id.bottomTuningButton);
+        mBpmFloatingActionButton = (FloatingActionButton) findViewById(R.id.floatingActionButtonBPM);
+        mCurTapCountTextView = (TextView) findViewById(R.id.currentCountTextView);
+        mPrevTapCountTextView = (TextView) findViewById(R.id.previousCountTextView);
+        mPrevBpmTextView = (TextView) findViewById(R.id.previousBpmTextView);
+        mGestureObject = new GestureDetectorCompat(this, new LearnGesture());
 
+        mBpmCalculator = new BpmCalculator();
 
-        bpmCalculator = new BpmCalculator();
-
-        mFloatingActionButtonBPM.setOnClickListener(new View.OnClickListener() {
+        mBpmFloatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                bpmCalculator.recordTime();
+                mBpmCalculator.recordTime();
 
-                Log.i("size", bpmCalculator.getSize() + "");
-                tapCount = bpmCalculator.getSize();
-                curTapCountTextView.setText(String.valueOf(tapCount));
+                //Log.i("size", mBpmCalculator.getSize() + "");
+                mTapCount = mBpmCalculator.getSize();
+                mCurTapCountTextView.setText(String.valueOf(mTapCount));
                 restartResetTimer();
 
-
                 updateView();
-            //mTextViewBPM.setText(++mCounter + "");
             }
         });
 
-        metronomeImageButton.setOnClickListener(new View.OnClickListener() {
+        mMetronomeImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(BPMActivity.this, MetronomeActivity.class);
+                Intent intent = new Intent(BpmActivity.this, MetronomeActivity.class);
                 finish();
                 startActivity(intent);
             }
         });
 
-        tunerImageButton.setOnClickListener(new View.OnClickListener() {
+        mTunerImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(BPMActivity.this, GuitarTunerActivity.class);
+                Intent intent = new Intent(BpmActivity.this, GuitarTunerActivity.class);
                 finish();
                 startActivity(intent);
             }
         });
     }
 
-
-
     private void updateView() {
         String displayValue;
-        if (bpmCalculator.times.size() >= 2) {
-            mBpm = bpmCalculator.getBpm();
+        if (mBpmCalculator.times.size() >= 2) {
+            mBpm = mBpmCalculator.getBpm();
             displayValue = Integer.valueOf(mBpm).toString();
         } else {
             displayValue = Integer.valueOf(mBpm).toString();
@@ -158,22 +147,18 @@ public class BPMActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        if (timer != null) {
-            timer.cancel();
+        if (mTimer != null) {
+            mTimer.cancel();
         }
-
-        bpmCalculator.clearTimes();
+        mBpmCalculator.clearTimes();
         super.onDestroy();
     }
 
-
-
-    public void handleTouch() {
-        bpmCalculator.recordTime();
-        restartResetTimer();
-        updateView();
-    }
-
+//    public void handleTouch() {
+//        mBpmCalculator.recordTime();
+//        restartResetTimer();
+//        updateView();
+//    }
 
     private void restartResetTimer() {
 
@@ -183,19 +168,19 @@ public class BPMActivity extends AppCompatActivity {
     }
 
     private void startResetTimer() {
-        timer = new Timer("reset-bpm-calculator", true);
-        timer.schedule(new TimerTask() {
+        mTimer = new Timer("reset-bpm_blue-calculator", true);
+        mTimer.schedule(new TimerTask() {
 
             @Override
             public void run() {
-                bpmCalculator.clearTimes();
+                mBpmCalculator.clearTimes();
 
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        prevTapCountTextView.setText(String.valueOf(tapCount));
-                        curTapCountTextView.setText("");
-                        prevBpmTextView.setText(String.valueOf(mBpm));
+                        mPrevTapCountTextView.setText(String.valueOf(mTapCount));
+                        mCurTapCountTextView.setText("");
+                        mPrevBpmTextView.setText(String.valueOf(mBpm));
                     }
                 });
 
@@ -204,16 +189,15 @@ public class BPMActivity extends AppCompatActivity {
     }
 
     private void stopResetTimer() {
-        if (timer != null) {
-            timer.cancel();
+        if (mTimer != null) {
+            mTimer.cancel();
         }
     }
-
 
     //responsible for swipe
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        this.gestureObject.onTouchEvent(event);
+        this.mGestureObject.onTouchEvent(event);
         return super.onTouchEvent(event);
     }
 
@@ -223,16 +207,16 @@ public class BPMActivity extends AppCompatActivity {
 
             if(e2.getX() > e1.getX()) {
 
-                //Intent intent = new Intent(BPMActivity.this, TunerActivity.class);
-                Intent intent = new Intent(BPMActivity.this, GuitarTunerActivity.class);
+                //Intent intent = new Intent(BpmActivity.this, TunerActivity.class);
+                Intent intent = new Intent(BpmActivity.this, GuitarTunerActivity.class);
                 finish();
                 startActivity(intent);
                 overridePendingTransition(R.anim.slide_in_left_right, R.anim.slide_out_left_right);
 
             } else
             if(e2.getX() < e1.getX()) {
-                //Intent intent = new Intent(BPMActivity.this, MetronomeA.class);
-                Intent intent = new Intent(BPMActivity.this, MetronomeActivity.class);
+                //Intent intent = new Intent(BpmActivity.this, MetronomeA.class);
+                Intent intent = new Intent(BpmActivity.this, MetronomeActivity.class);
                 finish();
                 startActivity(intent);
                 overridePendingTransition(R.anim.slide_in_right_left, R.anim.slide_out_right_left);
@@ -240,9 +224,5 @@ public class BPMActivity extends AppCompatActivity {
 
             return true;
         }
-    }
-
-    private String shareMessage() {
-        return "Try out this amazing musician app!";
     }
 }

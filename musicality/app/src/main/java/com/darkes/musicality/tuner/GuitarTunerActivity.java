@@ -1,6 +1,8 @@
 package com.darkes.musicality.tuner;
 
 import android.Manifest;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -17,6 +19,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
@@ -25,12 +29,15 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.darkes.musicality.bpm.BPMActivity;
+import com.darkes.musicality.bpm.BpmActivity;
 import com.darkes.musicality.metronome.MetronomeActivity;
 import com.darkes.musicality.R;
+import com.darkes.musicality.util.NotificationPublishReceiver;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -55,6 +62,32 @@ public class GuitarTunerActivity extends AppCompatActivity {
 	private ImageButton metronomeImageButton;
     private ImageButton bpmImageButton;
 
+    private FirebaseAnalytics mFirebaseAnalytics;
+
+
+    //share button
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    //implicit intent for sharing app
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()) {
+            case R.id.action_share:
+                Intent i = new Intent(Intent.ACTION_SEND);
+                i.setType("text/plain");
+                i.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_message_content));
+                i.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.share_message_subject));
+                i = Intent.createChooser(i, getString(R.string.share_message_detail));
+                startActivity(i);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
 
     private void requestRecordAudioPermission() {
@@ -88,13 +121,13 @@ public class GuitarTunerActivity extends AppCompatActivity {
                    // permissionsGranted = true;
                     // permission was granted, yay! Do the
                     // contacts-related task you need to do.
-                    Log.d("Activity", "Granted!");
+                    //Log.d("Activity", "Granted!");
                     if(LAUNCHANALYZER) {
                         try {
                             soundAnalyzer = new SoundAnalyzer();
                         } catch(Exception e) {
-                            Toast.makeText(this, "The are problems with your microphone :(", Toast.LENGTH_LONG ).show();
-                            Log.e(TAG, "Exception when instantiating SoundAnalyzer: " + e.getMessage());
+                            Toast.makeText(this, "The are problems with your microphone", Toast.LENGTH_LONG ).show();
+                            //Log.e(TAG, "Exception when instantiating SoundAnalyzer: " + e.getMessage());
                         }
                     soundAnalyzer.addObserver(uiController);
                     }
@@ -103,7 +136,7 @@ public class GuitarTunerActivity extends AppCompatActivity {
 
                     // permission denied, boo! Disable the
                     // functionality that depends on this permission.
-                    Log.d("Activity", "Denied!");
+                    //Log.d("Activity", "Denied!");
                     finish();
                 }
                 return;
@@ -114,6 +147,7 @@ public class GuitarTunerActivity extends AppCompatActivity {
         }
     }
 
+
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -123,8 +157,10 @@ public class GuitarTunerActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d(TAG,"onCreate()");
+        //Log.d(TAG,"onCreate()");
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
+        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, savedInstanceState);
 		setContentView(R.layout.activity_guitar_tuner);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -134,16 +170,18 @@ public class GuitarTunerActivity extends AppCompatActivity {
 
 		gestureObject = new GestureDetectorCompat(this, new LearnGesture());
 
+
         uiController = new UiController(GuitarTunerActivity.this);
 
-        int check = ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO);
-        Log.i("permg",PackageManager.PERMISSION_GRANTED + "");
 
-        Log.i("before", check + "");
+        int check = ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO);
+        //Log.i("permg",PackageManager.PERMISSION_GRANTED + "");
+
+        //Log.i("before", check + "");
           requestRecordAudioPermission();
 
         check = ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO);
-        Log.i("after", check + "");
+        //Log.i("after", check + "");
 
 
         if(check == PackageManager.PERMISSION_GRANTED) {
@@ -151,8 +189,8 @@ public class GuitarTunerActivity extends AppCompatActivity {
                 try {
                     soundAnalyzer = new SoundAnalyzer();
                 } catch(Exception e) {
-                    Toast.makeText(this, "The are problems with your microphone :(", Toast.LENGTH_LONG ).show();
-                    Log.e(TAG, "Exception when instantiating SoundAnalyzer: " + e.getMessage());
+                    Toast.makeText(this, "The are problems with your microphone.", Toast.LENGTH_LONG ).show();
+                    //Log.e(TAG, "Exception when instantiating SoundAnalyzer: " + e.getMessage());
                 }
                 soundAnalyzer.addObserver(uiController);
             }
@@ -183,7 +221,7 @@ public class GuitarTunerActivity extends AppCompatActivity {
         bpmImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(GuitarTunerActivity.this, BPMActivity.class);
+                Intent intent = new Intent(GuitarTunerActivity.this, BpmActivity.class);
 
                 finish();
                 startActivity(intent);
@@ -201,6 +239,8 @@ public class GuitarTunerActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        setTimedNotification();
+
     }
 	
 	private Map<Integer, Bitmap> preloadedImages;
@@ -243,7 +283,7 @@ public class GuitarTunerActivity extends AppCompatActivity {
 					 * really written out and close */
 					osw.flush();
 					osw.close();
-					Log.d(TAG, "Successfully dumped array in file " + name);
+					//Log.d(TAG, "Successfully dumped array in file " + name);
 				} catch(Exception e) {
 					Log.e(TAG,e.getMessage());
 				}
@@ -254,8 +294,8 @@ public class GuitarTunerActivity extends AppCompatActivity {
 	public boolean onKeyUp(int keyCode, KeyEvent event) {
 		if(ConfigFlags.menuKeyCausesAudioDataDump) {
 		    if (keyCode == KeyEvent.KEYCODE_MENU) {
-		        Log.d(TAG,"Menu button pressed");
-		        Log.d(TAG,"Requesting audio data dump");
+		        //Log.d(TAG,"Menu button pressed");
+		        //Log.d(TAG,"Requesting audio data dump");
 		        soundAnalyzer.dumpAudioDataRequest();
 		        return true;
 		    }
@@ -271,27 +311,6 @@ public class GuitarTunerActivity extends AppCompatActivity {
             R.drawable.guitar4,
             R.drawable.guitar5,
             R.drawable.guitar6
-//            R.drawable.guitarstrings1,
-//            R.drawable.guitarstrings2,
-//            R.drawable.guitarstrings3,
-//            R.drawable.guitarstrings4,
-//            R.drawable.guitarstrings5,
-//            R.drawable.guitarstrings6
-
-//            R.drawable.stringsreduced,
-//            R.drawable.stringsreduced,
-//            R.drawable.stringsreduced,
-//            R.drawable.stringsreduced,
-//            R.drawable.stringsreduced,
-//            R.drawable.stringsreduced,
-//			R.drawable.stringsreduced
-			//R.drawable.strings0,
-			//R.drawable.strings1,
-			//R.drawable.strings2,
-			//R.drawable.strings3,
-			//R.drawable.strings4,
-			//R.drawable.strings5,
-			//R.drawable.strings6
 	};
 	
 
@@ -343,22 +362,22 @@ public class GuitarTunerActivity extends AppCompatActivity {
 	@Override
 	protected void onPause() {
 		super.onPause();
-        Log.d(TAG,"onPause()");
+        //Log.d(TAG,"onPause()");
 	}
 
 	@Override
 	protected void onRestart() {
 		super.onRestart();
-        Log.d(TAG,"onRestart()");
+        //Log.d(TAG,"onRestart()");
 
 	}
 
 	@Override
 	protected void onResume() {
 		super.onResume();
-        Log.d(TAG,"onResume()");
+        //Log.d(TAG,"onResume()");
         if(soundAnalyzer!=null) {
-            Log.i("soundAna", "not null");
+            //Log.i("soundAna", "not null");
             soundAnalyzer.ensureStarted();
         }
 	}
@@ -366,7 +385,7 @@ public class GuitarTunerActivity extends AppCompatActivity {
 	@Override
 	protected void onStart() {
 		super.onStart();
-        Log.d(TAG,"onStart()");
+        //Log.d(TAG,"onStart()");
         if(soundAnalyzer!=null)
         	soundAnalyzer.start();
 	}
@@ -374,7 +393,7 @@ public class GuitarTunerActivity extends AppCompatActivity {
 	@Override
 	protected void onStop() {
 		super.onStop();
-        Log.d(TAG,"onStop()");
+        //Log.d(TAG,"onStop()");
         if(soundAnalyzer!=null)
         	soundAnalyzer.stop();
 	}
@@ -382,7 +401,7 @@ public class GuitarTunerActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Log.d(TAG,"onDestroy()");
+        //Log.d(TAG,"onDestroy()");
 
     }
 
@@ -405,8 +424,8 @@ public class GuitarTunerActivity extends AppCompatActivity {
 
 			} else
 			if(e2.getX() < e1.getX()) {
-				//Intent intent = new Intent(BPMActivity.this, MetronomeA.class);
-				Intent intent = new Intent(GuitarTunerActivity.this, BPMActivity.class);
+				//Intent intent = new Intent(BpmActivity.this, MetronomeA.class);
+				Intent intent = new Intent(GuitarTunerActivity.this, BpmActivity.class);
 				finish();
 				startActivity(intent);
 				overridePendingTransition(R.anim.slide_in_right_left, R.anim.slide_out_right_left);
@@ -414,4 +433,17 @@ public class GuitarTunerActivity extends AppCompatActivity {
 			return true;
 		}
 	}
+
+    private void setTimedNotification(){
+        //Send a notification to the user reminding them to tune their guitar if they haven't opened the app in awhile
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(this, NotificationPublishReceiver.class);
+        PendingIntent alarmIntent = PendingIntent.getBroadcast(this, NotificationPublishReceiver.REQUEST_CODE, intent, 0);
+        //Cancel any previously set alarms
+        alarmManager.cancel(alarmIntent);
+        //One week - 7 days, 24 hours, 60 minutes, 60 seconds, 1000 milliseconds
+        long time = Calendar.getInstance().getTimeInMillis() + (7 * 24 * 60 * 60 * 1000);
+        //long time = Calendar.getInstance().getTimeInMillis() + ( 5 * 1000);
+        alarmManager.set(AlarmManager.RTC, time, alarmIntent);
+    }
 }

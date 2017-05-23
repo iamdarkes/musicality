@@ -5,7 +5,7 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="appbar_padding_top">8dp</dimen>
     <!--<dimen name="design_fab_size_normal">250dp</dimen>-->
-    <dimen name="design_fab_size_mini">250dp</dimen>
+    <!--<dimen name="design_fab_size_mini">250dp</dimen>-->
     <!--<dimen name="design_fab_size_mini">100dp</dimen>-->
 
     <!--<dimen name="design_fab_image_size" tools:override="true">136dp</dimen>-->
