@@ -1,40 +1,166 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="com.darkes.musicality.bpm.BpmActivity">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/tool_bar"/>
+
+
+        <LinearLayout
+            android:layout_weight=".5"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <LinearLayout
                 android:orientation="vertical"
-                tools:context="com.darkes.musicality.BPMActivity" >
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
 
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/tool_bar" />
+                <TextView
+                    tools:text="1"
+                    android:gravity="center"
+                    android:id="@+id/previousCountTextView"
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"/>
 
-    <TextView
-        android:id="@+id/BPMTextView"
-        android:text="@string/zeroes"
-        android:textSize="100sp"
-        android:layout_marginTop="30dp"
-        android:textColor="@color/white"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_weight="2"/>
+                <TextView
+                    tools:text="123"
+                    android:textSize="18sp"
+                    android:id="@+id/previousBpmTextView"
+                    android:textColor="@android:color/white"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_weight="2"
+                android:id="@+id/BPMTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/zeroes"
+                android:textColor="@color/white"
+                android:gravity="center"
+
+                android:textSize="100sp"/>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+                <TextView
+                    tools:text="4"
+                    android:id="@+id/currentCountTextView"
+                    android:gravity="center"
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"/>
+
+                <TextView
+                    android:textColor="@android:color/white"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:text="@string/title_bpm"
+            android:textAlignment="gravity"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"/>
 
 
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/floatingActionButtonBPM"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:src="@drawable/ic_touch_app_white_36dp"
+            app:fabSize="normal"
+            app:srcCompat="@color/colorAccentLight"
+            />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/floatingActionButtonBPM"
-        android:layout_width="wrap_content"
+
+        <!--app:rippleColor="@color/colorAccentLight"-->
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:clickable="true"
-        app:fabSize="mini"
-        android:src="@drawable/ic_touch_app_white_24dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/very_dark_primary"
+        android:minHeight="?attr/actionBarSize">
 
-        android:layout_gravity="center_horizontal"
-        app:srcCompat="@color/colorAccentLight"
-        />
-    <!--app:rippleColor="@color/colorAccentLight"-->
+        <ImageButton
+            android:id="@+id/bottomMetronomeButton"
+            android:layout_width="0dp"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_weight="1"
+            android:background="@null"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/metronome_white"/>
 
-</LinearLayout>
+        <ImageButton
+            android:id="@+id/bottomTuningButton"
+            android:layout_width="0dp"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_weight="1"
+            android:background="@null"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/tuning_fork_white"/>
+
+        <ImageButton
+            android:id="@+id/bottomBpmButton"
+            android:layout_width="0dp"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_weight="1"
+            android:background="@null"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/bpm_blue"/>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

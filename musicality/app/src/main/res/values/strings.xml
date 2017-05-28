@@ -1,26 +1,21 @@
 <resources>
     <string name="app_name">Musicality</string>
-    <string name="action_settings">Settings</string>
+    <string name="toolbar_metronome">Metronome</string>
+    <string name="toolbar_bpm">BPM Calculator</string>
+    <string name="toolbar_guitar_tuner">Guitar Tuner</string>
+    <string name="action_share">Share</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="tap_again">Tap Again</string>
     <string name="zeroes">000</string>
-
-    <string name="start">Start</string>
-    <string name="stop">Stop</string>
-    <color name="yellow">#DEE054</color>
-    <string name="plus">+</string>
-    <string name="minus">-</string>
-    <string name="bps">bps</string>
-    <string name="timesignature">time signature</string>
-    <string name="dash">/</string>
-    <string name="volume">volume</string>
-    <color name="black">#000000</color>
-    <string name="one">1</string>
 
     <string name="minus_one">-1</string>
     <string name="minus_five">-5</string>
     <string name="add_one">+1</string>
     <string name="add_five">+5</string>
-    <string name="title_BPM">BPM</string>
+    <string name="title_bpm">BPM</string>
+
+    <string name="share_message_subject">Musicality - Musician Utility App</string>
+    <string name="share_message_content">Try out this amazing musician app! https://tinyurl.com/musicalityapp</string>
+    <string name="share_message_detail">Share Musicality via</string>
 </resources>
 

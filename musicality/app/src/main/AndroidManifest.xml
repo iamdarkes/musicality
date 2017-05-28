@@ -4,54 +4,34 @@
 
     <uses-permission android:name="android.permission.RECORD_AUDIO"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
         android:icon="@drawable/applogo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-    <!--android:theme="@style/AppTheme"-->
+        <receiver android:name=".util.NotificationPublishReceiver"/>
 
-
-        <activity android:name=".TunerActivity">
-
-
-            <!-- android:label="@string/app_name" -->
-            <!-- android:theme="@style/AppTheme.NoActionBar"> -->
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN"/> -->
-
-
-            <!-- <category android:name="android.intent.category.LAUNCHER"/> -->
-            <!-- </intent-filter> -->
-        </activity>
         <activity
-            android:name=".MetronomeActivity"
-            android:label="@string/app_name">
-            <!--android:theme="@style/AppTheme.NoActionBar">-->
+            android:name=".metronome.MetronomeActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".bpm.BpmActivity"
+                  android:screenOrientation="portrait">
 
-
+        </activity>
+        <activity android:name=".tuner.GuitarTunerActivity"
+                  android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
-        </activity>
-
-        <receiver android:name=".NotificationPublishReceiver"/>
-
-        <activity android:name=".BPMActivity">
-
+            <meta-data android:name="android.app.shortcuts"
+                       android:resource="@xml/shortcuts" />
 
         </activity>
-
-        <activity android:name=".metronome.MetronomeA">
-            
-        </activity>
-
     </application>
 
 </manifest>

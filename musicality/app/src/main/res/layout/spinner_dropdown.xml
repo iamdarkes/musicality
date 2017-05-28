@@ -4,7 +4,7 @@
                  android:id="@+id/spinner_textview"
                  android:layout_width="1000dp"
                  android:layout_height="wrap_content"
-                 android:singleLine="true"
+                 android:maxLines="1"
                  android:textColor="@color/white"
                  android:background="@color/background"
-                 android:textSize="70px" />
+                 android:textSize="20dp" />

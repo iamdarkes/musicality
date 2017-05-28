@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:shortcutId="bpm"
+        android:enabled="true"
+        android:icon="@drawable/bpm_blue"
+        android:shortcutShortLabel="@string/title_bpm"
+        android:shortcutLongLabel="@string/toolbar_bpm"
+        android:shortcutDisabledMessage="@string/toolbar_bpm">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.darkes.musicality"
+            android:targetClass="com.darkes.musicality.bpm.BpmActivity" />
+        <categories android:name="android.shortcut.bpm" />
+    </shortcut>
+
+    <shortcut
+        android:shortcutId="metronome"
+        android:enabled="true"
+        android:icon="@drawable/metronome_blue"
+        android:shortcutShortLabel="@string/toolbar_metronome"
+        android:shortcutLongLabel="@string/toolbar_metronome"
+        android:shortcutDisabledMessage="@string/toolbar_metronome">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.darkes.musicality"
+            android:targetClass="com.darkes.musicality.metronome.MetronomeActivity" />
+        <categories android:name="android.shortcut.metronome" />
+    </shortcut>
+
+    <shortcut
+        android:shortcutId="guitarTuner"
+        android:enabled="true"
+        android:icon="@drawable/tuning_fork_blue"
+        android:shortcutShortLabel="@string/toolbar_guitar_tuner"
+        android:shortcutLongLabel="@string/toolbar_guitar_tuner"
+        android:shortcutDisabledMessage="@string/toolbar_guitar_tuner">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.darkes.musicality"
+            android:targetClass="com.darkes.musicality.tuner.GuitarTunerActivity" />
+        <categories android:name="android.shortcut.guitarTuner" />
+    </shortcut>
+</shortcuts>

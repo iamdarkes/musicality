@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              >
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/tool_bar" />
+
+    <TextView
+        android:id="@+id/noteTextView"
+        tools:text="A"
+        android:layout_weight="2"
+        android:textSize="100sp"
+        android:gravity="center_vertical"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+
+    <TextView android:id="@+id/mainMessage"
+
+              android:textSize="20sp"
+              android:textAlignment="center"
+              android:gravity="center_vertical"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:layout_weight="1"
+              android:textColor="@color/white"
+              android:text=" "
+              android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+
+    
+
+    <ImageView android:id="@+id/guitar"
+    android:layout_width="wrap_content"
+    android:layout_height="0dp"
+    android:adjustViewBounds="true"
+    android:scaleType="fitXY"
+               android:layout_gravity="center"
+               android:layout_weight="5"
+    android:src="@drawable/guitar0"/>
+
+    <Spinner android:id="@+id/tuningSelector"
+             android:layout_weight="1"
+             android:layout_width="match_parent"
+             android:layout_height="0dp"
+        />
+<!--
+    <RelativeLayout android:id="@+id/relativeLayout1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent">
+
+        <!-<ImageView android:id="@+id/tune" -->
+                   <!--android:contentDescription="@string/tuningPlane" -->
+                   <!--android:layout_width="wrap_content" -->
+                   <!--android:layout_height="wrap_content" -->
+                   <!--android:layout_alignParentLeft="true" -->
+                   <!--android:layout_alignParentTop="true" -->
+                   <!--android:adjustViewBounds="true" -->
+                   <!--android:scaleType="fitXY" -->
+                   <!--android:src="@drawable/tune_horizontal"/>-->
+
+        <!--<Spinner android:id="@+id/tuningSelector"-->
+                 <!--android:layout_width="wrap_content"-->
+                 <!--android:layout_height="wrap_content"-->
+                 <!--android:layout_alignParentBottom="true"-->
+                 <!--android:layout_alignParentLeft="true"-->
+                 <!--android:layout_alignParentRight="true"/>-->
+
+        <!--<ImageView android:id="@+id/guitar"-->
+                   <!--android:layout_width="wrap_content"-->
+                   <!--android:layout_height="wrap_content"-->
+                   <!--android:layout_above="@+id/tuningSelector"-->
+                   <!--android:layout_alignParentLeft="true"-->
+                   <!--android:adjustViewBounds="true"-->
+                   <!--android:scaleType="fitXY"-->
+                   <!--android:src="@drawable/strings0"/>
+    </RelativeLayout>
+    -->
+
+
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:background="@color/very_dark_primary"
+        android:minHeight="?attr/actionBarSize"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:id="@+id/bottomMetronomeButton"
+            app:srcCompat="@drawable/metronome_white"
+            android:scaleType="centerInside"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:background="@null"
+            android:layout_height="?attr/actionBarSize"/>
+
+        <ImageButton
+            android:id="@+id/bottomTuningButton"
+            app:srcCompat="@drawable/tuning_fork_blue"
+            android:scaleType="centerInside"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:background="@null"
+            android:layout_height="?attr/actionBarSize"/>
+
+
+        <ImageButton
+            android:id="@+id/bottomBpmButton"
+            app:srcCompat="@drawable/bpm_white"
+            android:background="@null"
+            android:scaleType="centerInside"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="?attr/actionBarSize"/>
+
+    </LinearLayout>
+</LinearLayout>
+
+
+</RelativeLayout>
