@@ -1,10 +1,14 @@
-# cs499-android-a2
-
-Steps to run:
-
-1. make the musicality folder the project folder for the Android studio project
-2. Clean Build/ Rebuild the project
-3. Run
-
+# Musicality - Musician Utility Tool
+## Guitar Tuner, Metronome, BPM Calculator
 
 ![Image](/docs/images/metronome-bpm.png?raw=true "Musicality")
+
+Musicality is a full featured musician utility tool, and the problem it is trying to solve is having reducing the amount of apps musicians need to have installed on their phones in order to be productive. Musicality contains a guitar tuner with 18 different tunings, a metronome with an adjustable beats per bar feature, and a tap tempo BPM calculator.
+
+![Image](/docs/images/guitar-tunings.png?raw=true "Musicality")
+
+
+# [Official Musicality site](http://darkes.me/musicality "Musicality App Website")
+
+
+
