@@ -8,7 +8,7 @@ Musicality is a full featured musician utility tool, and the problem it is tryin
 ![Image](/docs/images/guitar-tunings.png?raw=true "Musicality")
 
 
-# [Official Musicality site](http://darkes.me/musicality "Musicality App Website")
+# [Official Musicality site](http://iamdarkes.github.io/musicality "Musicality App Website")
 
 
 
